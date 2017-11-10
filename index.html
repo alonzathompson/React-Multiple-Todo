@@ -1,0 +1,135 @@
+<!Doctype html>
+<html lang="en">
+<head>
+
+  <title>React Multiple Todo</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="keywords" content="reactjs, react todo, multiple list maker">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="Alonza Thompson">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="myStyles.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"></script>
+
+  <script type="text/babel">
+  const Card = (props) => {
+      return(
+        <div className="cardBasics">
+          <p style={{marginTop: '10px'}}>{props.data}</p>
+          <bttuon className="btn btn-primary btn-sm" style={{marginBottom: "10px"}} onClick={props._handleDelete}>remove</bttuon>
+        </div>
+      )
+    }
+
+  class CardList extends React.Component {
+    constructor(props){
+      super(props)
+          this.state = {
+            mess: '',
+            list: ["what are you doing"," where are we going"]
+        }
+      }
+
+     removeItem(id){
+       this.setState({
+         list: this.state.list.filter((el, i) => {
+          console.log(i)
+          return i !== id
+         })
+       })
+     }
+
+     addItem(){
+       const message = window.prompt("What would you like to Do")
+         if(message != null && message != "undefined" && message != ""){
+           this.setState({
+             mess: message
+           })
+
+           this.state.list.push(message)
+         }
+     }
+
+    render(){
+      const listItems = this.state.list.map((item, i) => {
+              console.log(i)
+              return <Card key={i} data={item} _handleDelete={this.removeItem.bind(this, i)} />
+            })
+      console.log(this.state.list)
+      return(
+        <div className="my-col-gap text-center">
+          {
+            listItems
+          }
+          <p className="cardPointer" onClick={this.addItem.bind(this)}>+add card</p>
+        </div>
+      )
+    }
+  }
+
+  const CardHolder = (props) => {
+      return(
+        <div className="containerHolder">
+          <h1 className="page-header text-center">React Todo List With Window Prompt Command</h1>
+        <div className="row">
+          <div className="col-md-3">
+             <div className="card-block color1 text-center">
+               <h3 className="card-title" >Todo 1</h3>
+               <p className="card-text"></p>
+            </div>
+
+              <CardList />
+
+          </div>
+          <div className="col-md-3">
+            <div className="card-block color2 text-center">
+               <h3 className="card-title">Todo 2</h3>
+               <p className="card-text cardPointer"></p>
+            </div>
+
+              <CardList />
+
+          </div>
+          <div className="col-md-3">
+            <div className="card-block color3 text-center">
+               <h3 className="card-title">Todo 3</h3>
+               <p className="card-text"></p>
+            </div>
+
+              <CardList />
+
+          </div>
+          <div className="col-md-3">
+            <div className="card-block color4 text-center">
+               <h3 className="card-title">Todo 4</h3>
+               <p className="card-text"></p>
+            </div>
+
+            <CardList />
+
+          </div>
+        </div>
+        </div>
+      )
+    }
+  ReactDOM.render(
+    <CardHolder />,
+    document.getElementById('root')
+  )
+  </script>
+</body>
+</html>

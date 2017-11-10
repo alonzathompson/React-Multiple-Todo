@@ -1,0 +1,40 @@
+body {
+  overflow-x:hidden
+}
+
+.my-col-gap{
+  padding: 25px;
+}
+
+.color1{
+  background-color: #8e6e95;
+  padding: 10px 0 10px 0;
+}
+
+.color2{
+  background-color: #39a59c;
+  padding: 10px 0 10px 0;
+}
+
+.color3{
+  background-color: #344759;
+  padding: 10px 0 10px 0;
+}
+
+.color4{
+  background-color: #e87413;
+  padding: 10px 0 10px 0;
+}
+
+.cardBasics{
+  border: 1px solid;
+  margin: 15px 0;
+}
+
+.containerHolder{
+  padding: 25px;
+}
+
+.cardPointer{
+  cursor: pointer;
+}
